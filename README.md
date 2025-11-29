@@ -1,237 +1,237 @@
-# KAFE SİPARİŞ YÖNETİM SİSTEMİ
+# CAFE ORDER MANAGEMENT SYSTEM
 
-## 📋 Proje Tanıtımı
+## 📋 Project Overview
 
-Kafe Sipariş Yönetim Sistemi, küçük ve orta ölçekli kafelerin masa bazlı sipariş takibini kolaylaştırmak için geliştirilmiş, Java tabanlı bir masaüstü uygulamasıdır. Bu sistem, kafe çalışanlarının sipariş alma, hesap takibi ve ödeme işlemlerini tek bir ekrandan hızlı ve verimli bir şekilde yönetmesini sağlar.
+The Cafe Order Management System is a Java-based desktop application developed to simplify table-based order tracking for small and medium-sized cafes. This system enables cafe staff to manage order taking, bill tracking, and payment processes quickly and efficiently from a single screen.
 
-## 🎯 Projenin Amacı
+## 🎯 Project Purpose
 
-Modern kafelerde masa yönetimi ve sipariş takibi, özellikle yoğun saatlerde zorlu bir görev haline gelebilir. Bu proje, aşağıdaki sorunlara çözüm sunmak için tasarlanmıştır:
+In modern cafes, table management and order tracking can become challenging tasks, especially during peak hours. This project is designed to solve the following problems:
 
-- **Manuel Hesap Tutma Zorluğu**: Elle tutulan hesaplar hata yapmaya ve müşteri memnuniyetsizliğine yol açabilir
-- **Zaman Kaybı**: Kağıt üzerinde sipariş takibi zaman alır ve verimsizdir
-- **Görünürlük Eksikliği**: Hangi masanın dolu/boş olduğunu anlamak ve hesapları takip etmek karmaşık olabilir
-- **İletişim Problemleri**: Mutfak ve servis personeli arasında sipariş iletişiminde karışıklıklar yaşanabilir
+- **Difficulty with Manual Record Keeping**: Manually kept records can lead to errors and customer dissatisfaction
+- **Time Loss**: Paper-based order tracking is time-consuming and inefficient
+- **Lack of Visibility**: Understanding which tables are occupied/empty and tracking bills can be complex
+- **Communication Problems**: Confusion can occur in order communication between kitchen and service staff
 
-Kafe Sipariş Yönetim Sistemi, bu sorunları dijitalleştirme ve otomasyonla çözerek, personelin daha az hata yapmasını, daha hızlı hizmet vermesini ve müşteri memnuniyetini artırmasını sağlar.
+The Cafe Order Management System solves these problems through digitalization and automation, enabling staff to make fewer errors, provide faster service, and increase customer satisfaction.
 
-## 🌟 Ana Özellikler
+## 🌟 Key Features
 
-### 1. Dinamik Masa Yapılandırması
-- Program başlangıcında kafe sahipleri, işletmelerine özel masa sayısı ve her masanın kişi kapasitesini tanımlayabilir
-- Sistem, girilen bilgilere göre otomatik olarak estetik bir masa düzeni oluşturur
-- Her kafe için özelleştirilebilir, esnek yapı
+### 1. Dynamic Table Configuration
+- At program startup, cafe owners can define the number of tables and each table's seating capacity specific to their establishment
+- The system automatically creates an aesthetic table layout based on the entered information
+- Customizable, flexible structure for each cafe
 
-### 2. Görsel Masa Durumu İzleme
-- **Yeşil renkli masalar**: Boş ve müşteri bekleyen masalar
-- **Turuncu renkli masalar**: Aktif siparişi olan dolu masalar
-- Her masa panelinde anlık sipariş listesi ve toplam hesap görüntülenir
-- Tek bakışta tüm kafeyi izleyebilme imkanı
+### 2. Visual Table Status Monitoring
+- **Green tables**: Empty tables waiting for customers
+- **Orange tables**: Occupied tables with active orders
+- Real-time order list and total bill displayed on each table panel
+- Ability to monitor the entire cafe at a glance
 
-### 3. Hızlı Sipariş Yönetimi
-- Kullanıcı dostu sipariş ekleme arayüzü
-- Önceden tanımlanmış zengin menü (kahveler, içecekler, tatlılar)
-- Adet seçimi ile çoklu ürün siparişi
-- Anlık fiyat hesaplama ve güncelleme
+### 3. Quick Order Management
+- User-friendly order addition interface
+- Rich predefined menu (coffees, beverages, desserts)
+- Multiple product ordering with quantity selection
+- Real-time price calculation and updates
 
-### 4. Güvenli Ödeme İşlemleri
-- Ödeme öncesi toplam tutarın onaylanması
-- Tek tıkla hesap kapatma
-- Otomatik masa temizleme ve sıfırlama
+### 4. Secure Payment Transactions
+- Confirmation of total amount before payment
+- One-click bill settlement
+- Automatic table cleanup and reset
 
-### 5. Profesyonel Menü Sistemi
-Sistem, tipik bir kafe menüsünü içerir:
-- **Sıcak İçecekler**: Türk Kahvesi, Espresso, Cappuccino, Latte, Filtre Kahve
-- **Soğuk İçecekler**: Çay, Su, Kola, Meyve Suyu
-- **Tatlılar**: Cheesecake, Brownie, Kurabiye
+### 5. Professional Menu System
+The system includes a typical cafe menu:
+- **Hot Beverages**: Turkish Coffee, Espresso, Cappuccino, Latte, Filter Coffee
+- **Cold Beverages**: Tea, Water, Cola, Fruit Juice
+- **Desserts**: Cheesecake, Brownie, Cookie
 
-## 🏗️ Teknik Mimari ve Nesne Tabanlı Tasarım
+## 🏗️ Technical Architecture and Object-Oriented Design
 
-Proje, modern yazılım geliştirme prensiplerini takip eden **tamamen nesne tabanlı** bir mimariye sahiptir:
+The project has a **fully object-oriented** architecture following modern software development principles:
 
-### Sınıf Yapısı
+### Class Structure
 
-#### 1. **Urun Sınıfı**
-- Menüdeki her ürünü temsil eder
-- Encapsulation prensibi ile ad ve fiyat bilgilerini korur
-- String gösterimi için toString() metodu override edilmiştir
+#### 1. **Urun (Product) Class**
+- Represents each item on the menu
+- Protects name and price information with encapsulation principle
+- toString() method is overridden for string representation
 
-#### 2. **Siparis Sınıfı**
-- Bir ürünün sipariş detaylarını içerir
-- Ürün nesnesi, adet bilgisi ve otomatik toplam hesaplama
-- İş mantığını kapsüller (toplam fiyat hesaplama)
+#### 2. **Siparis (Order) Class**
+- Contains order details for a product
+- Product object, quantity information, and automatic total calculation
+- Encapsulates business logic (total price calculation)
 
-#### 3. **Masa Sınıfı**
-- Bir kafedeki masayı tam olarak modellendirir
-- Masa numarası, kapasite ve sipariş koleksiyonunu yönetir
-- Sipariş ekleme, hesap hesaplama ve ödeme işlemlerini gerçekleştirir
-- Collection framework kullanımı (ArrayList)
+#### 3. **Masa (Table) Class**
+- Fully models a table in the cafe
+- Manages table number, capacity, and order collection
+- Performs order addition, bill calculation, and payment operations
+- Uses Collection framework (ArrayList)
 
-#### 4. **KafeSiparisPaneli Sınıfı**
-- Ana uygulama sınıfı ve kullanıcı arayüzü
-- MVC (Model-View-Controller) benzeri yapı
-- Event-driven programlama (Swing event listeners)
-- Dinamik UI oluşturma ve güncelleme
+#### 4. **KafeSiparisPaneli (Cafe Order Panel) Class**
+- Main application class and user interface
+- MVC (Model-View-Controller) like structure
+- Event-driven programming (Swing event listeners)
+- Dynamic UI creation and updates
 
-### Kullanılan Teknolojiler ve Kütüphaneler
+### Technologies and Libraries Used
 
-- **Java SE**: Core Java özellikleri
-- **Swing**: Grafik kullanıcı arayüzü (GUI) kütüphanesi
-- **AWT**: Layout yöneticileri ve event handling
-- **Collections Framework**: ArrayList ile dinamik veri yönetimi
+- **Java SE**: Core Java features
+- **Swing**: Graphical user interface (GUI) library
+- **AWT**: Layout managers and event handling
+- **Collections Framework**: Dynamic data management with ArrayList
 
-### Nesne Yönelimli Programlama Prensipleri
+### Object-Oriented Programming Principles
 
-Proje, OOP'nin dört temel prensibini uygular:
+The project implements the four fundamental principles of OOP:
 
-1. **Encapsulation (Kapsülleme)**: 
-   - Tüm sınıflarda private değişkenler ve public getter/setter metodları
-   - Veri gizleme ve kontrollü erişim
+1. **Encapsulation**:
+   - Private variables and public getter/setter methods in all classes
+   - Data hiding and controlled access
 
-2. **Abstraction (Soyutlama)**:
-   - Karmaşık iş mantığı basit metod çağrıları ile gizlenir
-   - Kullanıcı, implementasyon detaylarını bilmeden sistemi kullanabilir
+2. **Abstraction**:
+   - Complex business logic is hidden through simple method calls
+   - Users can use the system without knowing implementation details
 
-3. **Inheritance (Kalıtım)**:
-   - JFrame'den türetilmiş KafeSiparisPaneli sınıfı
-   - Swing bileşenlerinin kalıtım yapısından faydalanma
+3. **Inheritance**:
+   - KafeSiparisPaneli class derived from JFrame
+   - Utilizing the inheritance structure of Swing components
 
-4. **Polymorphism (Çok Biçimlilik)**:
-   - toString() metodunun override edilmesi
-   - Event listener interface implementasyonları
+4. **Polymorphism**:
+   - Overriding of toString() method
+   - Event listener interface implementations
 
-## 👥 Hedef Kullanıcılar
+## 👥 Target Users
 
-- Küçük ve orta ölçekli kafe işletmeleri
-- Restoranlar ve kafeteryalar
-- Okul ve kurumsal kantinler
-- Çay bahçeleri ve pastaneler
+- Small and medium-sized cafe businesses
+- Restaurants and cafeterias
+- School and corporate canteens
+- Tea gardens and patisseries
 
-## 💡 Projenin Faydaları
+## 💡 Project Benefits
 
-### İşletme İçin
-- ✅ Operasyonel verimlilik artışı
-- ✅ Hata oranında azalma
-- ✅ Daha hızlı masa devri
-- ✅ Personel eğitim süresinin kısalması
+### For the Business
+- ✅ Increased operational efficiency
+- ✅ Reduced error rate
+- ✅ Faster table turnover
+- ✅ Shortened staff training time
 
-### Personel İçin
-- ✅ Kullanımı kolay, sezgisel arayüz
-- ✅ Manuel hesaplama yükünden kurtulma
-- ✅ Daha az stres, daha fazla müşteri odaklı çalışma
+### For Staff
+- ✅ Easy-to-use, intuitive interface
+- ✅ Freedom from manual calculation burden
+- ✅ Less stress, more customer-focused work
 
-### Müşteri İçin
-- ✅ Daha hızlı servis
-- ✅ Hesap hatalarının minimizasyonu
-- ✅ Profesyonel hizmet deneyimi
+### For Customers
+- ✅ Faster service
+- ✅ Minimization of billing errors
+- ✅ Professional service experience
 
-## 🚀 Gelecek Geliştirme Fikirleri
+## 🚀 Future Development Ideas
 
-Proje, aşağıdaki özelliklerle genişletilebilir:
+The project can be expanded with the following features:
 
-1. **Veritabanı Entegrasyonu**: Sipariş geçmişi ve raporlama
-2. **Kullanıcı Yetkilendirmesi**: Farklı roller (garson, kasa, yönetici)
-3. **Günlük/Aylık Raporlar**: Satış analizleri ve istatistikler
-4. **Mutfak Bildirim Sistemi**: Sipariş otomasyonu
-5. **Mobil Uygulama**: Tablet veya telefon desteği
-6. **Online Rezervasyon**: Masa rezervasyon sistemi
-7. **Stok Takibi**: Ürün envanteri yönetimi
-8. **Müşteri Sadakat Programı**: Müşteri profilleri ve indirimler
+1. **Database Integration**: Order history and reporting
+2. **User Authorization**: Different roles (waiter, cashier, manager)
+3. **Daily/Monthly Reports**: Sales analytics and statistics
+4. **Kitchen Notification System**: Order automation
+5. **Mobile Application**: Tablet or phone support
+6. **Online Reservation**: Table reservation system
+7. **Inventory Tracking**: Product inventory management
+8. **Customer Loyalty Program**: Customer profiles and discounts
 
-## 📦 Kurulum ve Çalıştırma
+## 📦 Installation and Running
 
-### Gereksinimler
-- Java Development Kit (JDK) 8 veya üzeri
-- Herhangi bir Java IDE (Eclipse, IntelliJ IDEA, NetBeans) veya komut satırı
+### Requirements
+- Java Development Kit (JDK) 8 or higher
+- Any Java IDE (Eclipse, IntelliJ IDEA, NetBeans) or command line
 
-### Derleme ve Çalıştırma
+### Compilation and Running
 
-#### Komut Satırı ile:
+#### Via Command Line:
 ```bash
-# Projeyi derleyin
+# Compile the project
 javac *.java
 
-# Programı çalıştırın
+# Run the program
 java KafeSiparisPaneli
 ```
 
-#### IDE ile:
-1. Tüm .java dosyalarını IDE'nize import edin
-2. KafeSiparisPaneli.java dosyasını açın
-3. Run butonuna tıklayın
+#### Via IDE:
+1. Import all .java files into your IDE
+2. Open KafeSiparisPaneli.java file
+3. Click the Run button
 
-### İlk Kullanım
-1. Program açıldığında masa sayısını girin (örn: 6)
-2. Her masa için kişi kapasitesini belirleyin (örn: 2, 4, 4, 6, 4, 2)
-3. Ana panel açılacaktır
-4. Masalara tıklayarak sipariş ekleyin
-5. "Hesabı Öde" ile işlemi tamamlayın
+### First Use
+1. Enter the number of tables when the program opens (e.g., 6)
+2. Determine the seating capacity for each table (e.g., 2, 4, 4, 6, 4, 2)
+3. The main panel will open
+4. Click on tables to add orders
+5. Complete the transaction with "Pay Bill"
 
-## 📂 Proje Dosya Yapısı
+## 📂 Project File Structure
 
 ```
 KafeSiparisYonetimi/
 │
-├── Urun.java              # Ürün model sınıfı
-├── Siparis.java           # Sipariş model sınıfı
-├── Masa.java              # Masa model sınıfı
-├── KafeSiparisPaneli.java # Ana uygulama ve GUI
-└── README.md              # Bu dosya
+├── Urun.java              # Product model class
+├── Siparis.java           # Order model class
+├── Masa.java              # Table model class
+├── KafeSiparisPaneli.java # Main application and GUI
+└── README.md              # This file
 ```
 
-## 🎓 Eğitsel Değer
+## 🎓 Educational Value
 
-Bu proje, aşağıdaki kavramları öğrenmek ve uygulamak için mükemmel bir örnektir:
+This project is an excellent example for learning and applying the following concepts:
 
-- Nesne yönelimli programlama prensipleri
-- Java Swing ile GUI geliştirme
+- Object-oriented programming principles
+- GUI development with Java Swing
 - Event-driven programming
-- Collection framework kullanımı
-- Layout yöneticileri (GridLayout, BorderLayout)
-- Dialog pencereleri ve kullanıcı etkileşimi
-- Model-View tasarım yaklaşımı
+- Collection framework usage
+- Layout managers (GridLayout, BorderLayout)
+- Dialog windows and user interaction
+- Model-View design approach
 
-## 🤝 Katkıda Bulunma
+## 🤝 Contributing
 
-Bu proje, nesne tabanlı programlama eğitimi için geliştirilmiştir. Geliştirmeler ve iyileştirmeler için:
+This project has been developed for object-oriented programming education. For developments and improvements:
 
-1. Yeni özellikler ekleyebilirsiniz
-2. Kod optimizasyonu yapabilirsiniz
-3. Dokümantasyonu geliştirebilirsiniz
-4. Hata düzeltmeleri yapabilirsiniz
+1. You can add new features
+2. You can perform code optimization
+3. You can improve documentation
+4. You can make bug fixes
 
-## 📝 Lisans
+## 📝 License
 
-Bu proje eğitim amaçlı geliştirilmiştir ve özgürce kullanılabilir.
+This project has been developed for educational purposes and can be used freely.
 
-## 👨‍💻 Geliştirici Notları
+## 👨‍💻 Developer Notes
 
-### Kod Kalitesi
-- Her sınıf tek bir sorumluluğa sahiptir (Single Responsibility Principle)
-- Metodlar küçük ve odaklanmış tutulmuştur
-- Anlamlı değişken ve metod isimleri kullanılmıştır
-- Comprehensive JavaDoc yorumları eklenmiştir
+### Code Quality
+- Each class has a single responsibility (Single Responsibility Principle)
+- Methods are kept small and focused
+- Meaningful variable and method names are used
+- Comprehensive JavaDoc comments have been added
 
-### Performans
-- Lightweight Swing bileşenleri kullanılmıştır
-- Gereksiz nesne oluşturma minimalize edilmiştir
-- Event listener'lar verimli şekilde yönetilmiştir
+### Performance
+- Lightweight Swing components are used
+- Unnecessary object creation is minimized
+- Event listeners are managed efficiently
 
-### Kullanılabilirlik
-- Sezgisel kullanıcı arayüzü
-- Anlaşılır hata mesajları
-- Görsel geri bildirim (renkli masa durumları)
-- Onay dialogları ile yanlışlıkla işlem yapma önlenir
+### Usability
+- Intuitive user interface
+- Clear error messages
+- Visual feedback (colored table states)
+- Confirmation dialogs prevent accidental actions
 
-## 📞 İletişim ve Destek
+## 📞 Contact and Support
 
-Sorularınız veya önerileriniz için:
-- Proje dokümantasyonunu inceleyin
-- Kod yorumlarını okuyun
-- Java Swing dokümantasyonuna başvurun
+For questions or suggestions:
+- Review the project documentation
+- Read code comments
+- Refer to Java Swing documentation
 
 ---
 
-**Kafe Sipariş Yönetim Sistemi** - Nesne Tabanlı Programlama ile Modern Kafe Yönetimi 🍵☕🍰
+**Cafe Order Management System** - Modern Cafe Management with Object-Oriented Programming 🍵☕🍰
 
 *Version 1.0 - 2025*
