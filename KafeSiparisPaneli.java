@@ -2,25 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-/**
- * KafeSiparisPaneli - Ana uygulama sınıfı
- * Kafe sipariş yönetim sisteminin grafik arayüzünü ve işlevselliğini sağlar
- * 
- * Özellikler:
- * - Dinamik masa oluşturma
- * - Sipariş ekleme ve yönetme
- * - Hesap ödeme işlemleri
- * - Görsel masa durumu gösterimi
- */
 public class KafeSiparisPaneli extends JFrame {
     private ArrayList<Masa> masalar;
     private ArrayList<Urun> menuUrunleri;
     private JPanel masaPaneli;
-    
-    /**
-     * Ana uygulama penceresi oluşturucusu
-     * Menüyü hazırlar, masa bilgilerini alır ve arayüzü oluşturur
-     */
+
     public KafeSiparisPaneli() {
         masalar = new ArrayList<>();
         menuUrunleri = new ArrayList<>();
@@ -46,11 +32,7 @@ public class KafeSiparisPaneli extends JFrame {
         
         add(new JScrollPane(masaPaneli));
     }
-    
-    /**
-     * Kafe menüsünü hazırlar
-     * Önceden tanımlanmış ürünleri menüye ekler
-     */
+
     private void menuHazirla() {
         menuUrunleri.add(new Urun("Türk Kahvesi", 35.0));
         menuUrunleri.add(new Urun("Espresso", 40.0));
@@ -65,11 +47,7 @@ public class KafeSiparisPaneli extends JFrame {
         menuUrunleri.add(new Urun("Brownie", 55.0));
         menuUrunleri.add(new Urun("Kurabiye", 40.0));
     }
-    
-    /**
-     * Kullanıcıdan masa bilgilerini alır
-     * Masa sayısını sorar
-     */
+
     private void masaBilgileriniAl() {
         String masaSayisiStr = JOptionPane.showInputDialog(this, 
             "Kafede kaç masa var?", "Masa Sayısı", JOptionPane.QUESTION_MESSAGE);
@@ -84,31 +62,23 @@ public class KafeSiparisPaneli extends JFrame {
             masalar.add(new Masa(i));
         }
     }
-    
-    /**
-     * Belirli bir masa için görsel panel oluşturur
-     * @param masa Panel oluşturulacak masa
-     * @return Masa paneli
-     */
+
     private JPanel masaPaneliOlustur(Masa masa) {
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout(5, 5));
         panel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 2));
-        
-        // Masa durumuna göre renk ayarla
+
         if (masa.bosMu()) {
-            panel.setBackground(new Color(220, 255, 220)); // Açık yeşil - Boş
+            panel.setBackground(new Color(220, 255, 220));
         } else {
-            panel.setBackground(new Color(255, 240, 220)); // Açık turuncu - Dolu
+            panel.setBackground(new Color(255, 240, 220));
         }
-        
-        // Başlık (Masa numarası)
+
         JLabel baslik = new JLabel("Masa " + masa.getMasaNo(), SwingConstants.CENTER);
         baslik.setFont(new Font("Arial", Font.BOLD, 18));
         baslik.setBorder(BorderFactory.createEmptyBorder(10, 5, 10, 5));
         panel.add(baslik, BorderLayout.NORTH);
-        
-        // Sipariş gösterim alanı
+
         JTextArea siparisAlani = new JTextArea();
         siparisAlani.setEditable(false);
         siparisAlani.setFont(new Font("Monospaced", Font.PLAIN, 12));
@@ -117,12 +87,10 @@ public class KafeSiparisPaneli extends JFrame {
         
         JScrollPane scrollPane = new JScrollPane(siparisAlani);
         panel.add(scrollPane, BorderLayout.CENTER);
-        
-        // Butonlar paneli
+
         JPanel butonPaneli = new JPanel(new GridLayout(2, 1, 8, 8));
         butonPaneli.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        
-        // Sipariş Ekle butonu
+
         JButton siparisEkleBtn = new JButton("Sipariş Ekle");
         siparisEkleBtn.setFont(new Font("Arial", Font.BOLD, 14));
         siparisEkleBtn.setPreferredSize(new Dimension(150, 40));
@@ -138,8 +106,7 @@ public class KafeSiparisPaneli extends JFrame {
                 panel.setBackground(new Color(255, 240, 220));
             }
         });
-        
-        // Hesabı Öde butonu
+
         JButton hesapOdeBtn = new JButton("Hesabı Öde");
         hesapOdeBtn.setFont(new Font("Arial", Font.BOLD, 14));
         hesapOdeBtn.setPreferredSize(new Dimension(150, 40));
@@ -177,12 +144,7 @@ public class KafeSiparisPaneli extends JFrame {
         
         return panel;
     }
-    
-    /**
-     * Masanın sipariş gösterim alanını günceller
-     * @param masa Güncellenecek masa
-     * @param siparisAlani Sipariş gösterim text area
-     */
+
     private void siparisGuncelle(Masa masa, JTextArea siparisAlani) {
         StringBuilder sb = new StringBuilder();
         
@@ -201,11 +163,7 @@ public class KafeSiparisPaneli extends JFrame {
         
         siparisAlani.setText(sb.toString());
     }
-    
-    /**
-     * Sipariş ekleme dialog penceresini açar
-     * @param masa Sipariş eklenecek masa
-     */
+
     private void siparisEkleDialog(Masa masa) {
         JDialog dialog = new JDialog(this, "Sipariş Ekle - Masa " + masa.getMasaNo(), true);
         dialog.setSize(400, 500);
@@ -218,8 +176,7 @@ public class KafeSiparisPaneli extends JFrame {
         JLabel baslik = new JLabel("Ürün Seçin:", SwingConstants.LEFT);
         baslik.setFont(new Font("Arial", Font.BOLD, 14));
         icerikPanel.add(baslik, BorderLayout.NORTH);
-        
-        // Ürün listesi
+
         DefaultListModel<Urun> listModel = new DefaultListModel<>();
         for (Urun urun : menuUrunleri) {
             listModel.addElement(urun);
@@ -230,10 +187,9 @@ public class KafeSiparisPaneli extends JFrame {
         urunListesi.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane scrollPane = new JScrollPane(urunListesi);
         icerikPanel.add(scrollPane, BorderLayout.CENTER);
-        
+
         JPanel altPanel = new JPanel(new BorderLayout(5, 5));
-        
-        // Adet seçimi
+
         JPanel adetPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         adetPanel.add(new JLabel("Adet:"));
         SpinnerModel spinnerModel = new SpinnerNumberModel(1, 1, 50, 1);
@@ -241,8 +197,7 @@ public class KafeSiparisPaneli extends JFrame {
         adetSpinner.setPreferredSize(new Dimension(70, 25));
         adetPanel.add(adetSpinner);
         altPanel.add(adetPanel, BorderLayout.NORTH);
-        
-        // Butonlar
+
         JPanel butonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         
         JButton ekleBtn = new JButton("Ekle");
@@ -289,11 +244,7 @@ public class KafeSiparisPaneli extends JFrame {
         
         dialog.setVisible(true);
     }
-    
-    /**
-     * Uygulamanın başlangıç noktası
-     * @param args Komut satırı argümanları
-     */
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             try {
