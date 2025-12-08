@@ -4,42 +4,42 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                        PROGRAM START                             │
-│                      (main() method)                             │
+│                        PROGRAM START                            │
+│                      (main() method)                            │
 └─────────────────────┬───────────────────────────────────────────┘
                       │
                       ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│              Set System Look and Feel                            │
+│             Set System Look and Feel                            │
 │         UIManager.setLookAndFeel()                              │
 └─────────────────────┬───────────────────────────────────────────┘
                       │
                       ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│         Create KafeSiparisPaneli Instance                        │
-│              (Constructor Called)                                │
+│        Create KafeSiparisPaneli Instance                        │
+│             (Constructor Called)                                │
 └─────────────────────┬───────────────────────────────────────────┘
                       │
                       ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│              Initialize Collections                              │
+│              Initialize Collections                             │
 │         - ArrayList<Masa> masalar                               │
 │         - ArrayList<Urun> menuUrunleri                          │
 └─────────────────────┬───────────────────────────────────────────┘
                       │
                       ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                   menuHazirla()                                  │
-│         Create and Add All Menu Items                            │
+│                  menuHazirla()                                  │
+│        Create and Add All Menu Items                            │
 │    (Coffee, Drinks, Desserts - 12 items)                        │
 └─────────────────────┬───────────────────────────────────────────┘
                       │
                       ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│              Setup Main Window Properties                        │
-│         - Title: "Kafe Sipariş Yönetim Sistemi"                │
-│         - Size: 1200x800                                         │
-│         - Center on screen                                       │
+│             Setup Main Window Properties                        │
+│         - Title: "Kafe Sipariş Yönetim Sistemi"                 │
+│         - Size: 1200x800                                        │
+│         - Center on screen                                      │
 └─────────────────────┬───────────────────────────────────────────┘
                       │
                       ▼
@@ -665,4 +665,3 @@ User Action:
 **END OF FLOWCHART DOCUMENTATION**
 
 *This flowchart provides a complete overview of the Cafe Order Management System's program flow, including all major processes, decision points, and state transitions.*
-

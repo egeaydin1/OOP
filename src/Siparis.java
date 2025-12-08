@@ -6,19 +6,15 @@ public class Siparis {
         this.urun = urun;
         this.adet = adet;
     }
-
     public Urun getUrun() {
         return urun;
     }
-
     public int getAdet() {
         return adet;
     }
-
     public double getToplamFiyat() {
         return urun.getFiyat() * adet;
     }
-
     @Override
     public String toString() {
         return adet + "x " + urun.getAd() + " = " + getToplamFiyat() + " TL";

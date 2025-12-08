@@ -11,26 +11,49 @@ public class KafeSiparisPaneli extends JFrame {
         masalar = new ArrayList<>();
         menuUrunleri = new ArrayList<>();
         menuHazirla();
-        
+
         setTitle("Kafe Sipariş Yönetim Sistemi");
         setSize(1200, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        
+
+        menuCubuguOlustur();
+
         masaBilgileriniAl();
-        
+
         masaPaneli = new JPanel();
         int masaSayisi = masalar.size();
         int kolonSayisi = (int) Math.ceil(Math.sqrt(masaSayisi));
         int satirSayisi = (int) Math.ceil((double) masaSayisi / kolonSayisi);
         masaPaneli.setLayout(new GridLayout(satirSayisi, kolonSayisi, 10, 10));
         masaPaneli.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        
+
         for (Masa masa : masalar) {
             masaPaneli.add(masaPaneliOlustur(masa));
         }
-        
+
         add(new JScrollPane(masaPaneli));
+    }
+
+    private void menuCubuguOlustur() {
+        JMenuBar menuBar = new JMenuBar();
+
+        JMenu menuYonetim = new JMenu("Menü Yönetimi");
+        menuYonetim.setFont(new Font("Arial", Font.PLAIN, 14));
+
+        JMenuItem yeniUrunItem = new JMenuItem("Yeni Ürün Ekle");
+        yeniUrunItem.setFont(new Font("Arial", Font.PLAIN, 13));
+        yeniUrunItem.addActionListener(e -> yeniUrunEkleDialog());
+
+        JMenuItem menuGorItem = new JMenuItem("Menüyü Görüntüle");
+        menuGorItem.setFont(new Font("Arial", Font.PLAIN, 13));
+        menuGorItem.addActionListener(e -> menuGoruntuleDialog());
+
+        menuYonetim.add(yeniUrunItem);
+        menuYonetim.add(menuGorItem);
+        menuBar.add(menuYonetim);
+
+        setJMenuBar(menuBar);
     }
 
     private void menuHazirla() {
@@ -162,6 +185,129 @@ public class KafeSiparisPaneli extends JFrame {
         }
         
         siparisAlani.setText(sb.toString());
+    }
+
+    private void yeniUrunEkleDialog() {
+        JDialog dialog = new JDialog(this, "Yeni Ürün Ekle", true);
+        dialog.setSize(400, 250);
+        dialog.setLocationRelativeTo(this);
+        dialog.setLayout(new BorderLayout(10, 10));
+
+        JPanel formPanel = new JPanel(new GridLayout(2, 2, 10, 10));
+        formPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 10, 20));
+
+        JLabel adLabel = new JLabel("Ürün Adı:");
+        adLabel.setFont(new Font("Arial", Font.PLAIN, 13));
+        JTextField adField = new JTextField();
+        adField.setFont(new Font("Arial", Font.PLAIN, 13));
+
+        JLabel fiyatLabel = new JLabel("Fiyat (TL):");
+        fiyatLabel.setFont(new Font("Arial", Font.PLAIN, 13));
+        JTextField fiyatField = new JTextField();
+        fiyatField.setFont(new Font("Arial", Font.PLAIN, 13));
+
+        formPanel.add(adLabel);
+        formPanel.add(adField);
+        formPanel.add(fiyatLabel);
+        formPanel.add(fiyatField);
+
+        JPanel butonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        butonPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 20, 20));
+
+        JButton ekleBtn = new JButton("Ekle");
+        ekleBtn.setFont(new Font("Arial", Font.BOLD, 13));
+        ekleBtn.setBackground(new Color(100, 180, 255));
+        ekleBtn.setForeground(Color.BLACK);
+        ekleBtn.setFocusPainted(false);
+        ekleBtn.addActionListener(e -> {
+            String ad = adField.getText().trim();
+            String fiyatStr = fiyatField.getText().trim();
+
+            if (ad.isEmpty() || fiyatStr.isEmpty()) {
+                JOptionPane.showMessageDialog(dialog,
+                    "Lütfen tüm alanları doldurun!",
+                    "Uyarı", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            try {
+                double fiyat = Double.parseDouble(fiyatStr);
+                if (fiyat <= 0) {
+                    JOptionPane.showMessageDialog(dialog,
+                        "Fiyat 0'dan büyük olmalıdır!",
+                        "Uyarı", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+
+                menuUrunleri.add(new Urun(ad, fiyat));
+                JOptionPane.showMessageDialog(dialog,
+                    ad + " menüye eklendi!",
+                    "Başarılı", JOptionPane.INFORMATION_MESSAGE);
+                dialog.dispose();
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(dialog,
+                    "Geçersiz fiyat formatı!",
+                    "Hata", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
+        JButton iptalBtn = new JButton("İptal");
+        iptalBtn.setFont(new Font("Arial", Font.BOLD, 13));
+        iptalBtn.setBackground(new Color(220, 220, 220));
+        iptalBtn.setForeground(Color.BLACK);
+        iptalBtn.setFocusPainted(false);
+        iptalBtn.addActionListener(e -> dialog.dispose());
+
+        butonPanel.add(ekleBtn);
+        butonPanel.add(iptalBtn);
+
+        dialog.add(formPanel, BorderLayout.CENTER);
+        dialog.add(butonPanel, BorderLayout.SOUTH);
+
+        dialog.setVisible(true);
+    }
+
+    private void menuGoruntuleDialog() {
+        JDialog dialog = new JDialog(this, "Mevcut Menü", true);
+        dialog.setSize(500, 600);
+        dialog.setLocationRelativeTo(this);
+        dialog.setLayout(new BorderLayout(10, 10));
+
+        JPanel icerikPanel = new JPanel(new BorderLayout(10, 10));
+        icerikPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        JLabel baslik = new JLabel("Menüdeki Ürünler (" + menuUrunleri.size() + " ürün)", SwingConstants.CENTER);
+        baslik.setFont(new Font("Arial", Font.BOLD, 16));
+        baslik.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+        icerikPanel.add(baslik, BorderLayout.NORTH);
+
+        DefaultListModel<Urun> listModel = new DefaultListModel<>();
+        for (Urun urun : menuUrunleri) {
+            listModel.addElement(urun);
+        }
+
+        JList<Urun> urunListesi = new JList<>(listModel);
+        urunListesi.setFont(new Font("Arial", Font.PLAIN, 14));
+        urunListesi.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        JScrollPane scrollPane = new JScrollPane(urunListesi);
+        icerikPanel.add(scrollPane, BorderLayout.CENTER);
+
+        JPanel butonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        butonPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
+
+        JButton kapat = new JButton("Kapat");
+        kapat.setFont(new Font("Arial", Font.BOLD, 13));
+        kapat.setBackground(new Color(220, 220, 220));
+        kapat.setForeground(Color.BLACK);
+        kapat.setFocusPainted(false);
+        kapat.addActionListener(e -> dialog.dispose());
+
+        butonPanel.add(kapat);
+
+        dialog.add(icerikPanel, BorderLayout.CENTER);
+        dialog.add(butonPanel, BorderLayout.SOUTH);
+
+        dialog.setVisible(true);
     }
 
     private void siparisEkleDialog(Masa masa) {
