@@ -1,0 +1,40 @@
+{
+  "urunler": [
+    {
+      "ad": "Turkish Coffee",
+      "fiyat": 25.0
+    },
+    {
+      "ad": "Cappuccino",
+      "fiyat": 35.0
+    },
+    {
+      "ad": "Latte",
+      "fiyat": 38.0
+    },
+    {
+      "ad": "Espresso",
+      "fiyat": 30.0
+    },
+    {
+      "ad": "Tea",
+      "fiyat": 15.0
+    },
+    {
+      "ad": "Hot Chocolate",
+      "fiyat": 32.0
+    },
+    {
+      "ad": "Croissant",
+      "fiyat": 20.0
+    },
+    {
+      "ad": "Cake",
+      "fiyat": 45.0
+    },
+    {
+      "ad": "Cookie",
+      "fiyat": 12.0
+    }
+  ]
+}
